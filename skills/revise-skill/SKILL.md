@@ -1,6 +1,7 @@
 ---
 name: revise-skill
-description: Propose and evaluate a scoped skill revision after a reproducible task failure or explicit corrective feedback. Use when an existing skill needs a verified behavioral correction; ordinary task execution, new-skill authoring, and saving preferences alone do not need this workflow.
+description: Fix an existing agent skill that produces the wrong result or skips a required step. Reproduce the failure, test a separate revision on a different input, and return a diff and test report for review.
+license: MIT
 metadata:
   version: "0.1.0"
   status: experimental

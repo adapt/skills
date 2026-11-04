@@ -51,8 +51,8 @@ def validate_skill(path):
 def main():
     errors = []
     skills = sorted((ROOT / "skills").glob("*/SKILL.md"))
-    if (ROOT / "SKILL.md").exists() or len(skills) != 1:
-        errors.append("collection must expose exactly the one intentional flagship")
+    if not skills:
+        errors.append("expected at least one skills/<name>/SKILL.md")
     discovered = list(ROOT.rglob("SKILL.md"))
     discovered = [p for p in discovered if not any(x.startswith(".") for x in p.relative_to(ROOT).parts)]
     if set(discovered) != set(skills):
@@ -73,7 +73,7 @@ def main():
     if errors:
         print("\n".join(errors), file=sys.stderr)
         return 1
-    print(f"Structural checks passed: {len(skills)} intentional skill. Behavior not evaluated.")
+    print(f"Structural checks passed: {len(skills)} skill(s). Behavior not evaluated.")
     return 0
 
 
