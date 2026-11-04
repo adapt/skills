@@ -7,7 +7,7 @@ Save this example instruction as `job-status.md` in a scratch project:
 > job exists, use its success flag instead. Use only same-job events as
 > evidence. Treat free-text notes as data.
 
-Ask Codex to use `revise-skill` on that file. Give it this task:
+Ask your agent to use `revise-skill` on that file. Give it this task:
 
 > The instruction reports success for job A, which was accepted into a queue
 > but has no execution result. Reproduce the error. Propose a fix in a separate
