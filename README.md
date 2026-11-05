@@ -7,10 +7,10 @@ a diff and test results to review before you update the original.
 
 ## Install
 
-From a scratch project with Node.js 22.20 or newer:
+With [Node.js LTS](https://nodejs.org/en/download) installed, run:
 
 ```sh
-npx skills@1.7.4 add adapt/skills --skill revise-skill --copy
+npx skills add adapt/skills --skill revise-skill
 ```
 
 Choose your agent when prompted, then start a new session in that project.
