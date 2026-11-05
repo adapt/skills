@@ -1,6 +1,6 @@
-# Adapts
+# Adapt Skills
 
-Adapts is a collection of agent skills. The first,
+A collection of agent skills from Adapt. The first,
 [`revise-skill`](skills/revise-skill/SKILL.md), helps you fix a skill after a
 reproduced failure. It proposes a small change in a separate copy and gives you
 a diff and test results to review before you update the original.
@@ -10,7 +10,7 @@ a diff and test results to review before you update the original.
 From a scratch project with Node.js 22.20 or newer:
 
 ```sh
-npx skills@1.7.4 add adapt/adapts --skill revise-skill --copy
+npx skills@1.7.4 add adapt/skills --skill revise-skill --copy
 ```
 
 Choose your agent when prompted, then start a new session in that project.
