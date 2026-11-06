@@ -1,20 +1,23 @@
 # Adapt Skills
 
-A collection of agent skills from Adapt. The first,
-[`revise-skill`](skills/revise-skill/SKILL.md), helps you fix a skill after a
-reproduced failure. It proposes a small change in a separate copy and gives you
-a diff and test results to review before you update the original.
+Skills built by the Adapt team. We add to this collection as we develop new
+workflows. Install the ones you need in your coding agent.
 
 ## Install
 
 ```sh
-npx skills add adapt/skills --skill revise-skill
+npx skills add adapt/skills
 ```
 
-Choose your agent when prompted, then start a new session in that project.
-Ask it to use `revise-skill` and provide the target skill, the failed task, and
-what you expected. Or try the [worked example](examples/queued-is-not-completed.md).
+Choose the skills and your agent when prompted, then start a new session in
+that project. Ask your agent to use the installed skill for your task.
 
-The skill is experimental. It needs no Adapt account.
+## Skills
+
+| Skill | When to use it |
+| --- | --- |
+| [revise-skill](skills/revise-skill/SKILL.md) | Fix an existing skill after a reproduced failure. Get a separate candidate, diff, and test report to review. [Example](examples/queued-is-not-completed.md). Experimental. |
+
+Each skill documents its own workflow and requirements.
 
 [Contributing](CONTRIBUTING.md) · [Security](SECURITY.md) · [MIT license](LICENSE)
