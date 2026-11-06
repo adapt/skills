@@ -17,6 +17,7 @@ that project. Ask your agent to use the installed skill for your task.
 | Skill | When to use it |
 | --- | --- |
 | [revise-skill](skills/revise-skill/SKILL.md) | Fix an existing skill after a reproduced failure. Get a separate candidate, diff, and test report to review. [Example](examples/queued-is-not-completed.md). Experimental. |
+| [pin-github-actions](skills/pin-github-actions/SKILL.md) | Pin your workflows' actions to the commits they run today and add a check that keeps them pinned, so a retagged or hijacked action can't change your CI. [Example](examples/pin-a-workflow.md). Experimental. |
 
 Each skill documents its own workflow and requirements.
 
