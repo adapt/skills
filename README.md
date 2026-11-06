@@ -1,6 +1,7 @@
 # Adapt Skills
 
-Agent skills from Adapt. Install the workflows you need in your coding agent.
+Skills built by the Adapt team. We add to this collection as we develop new
+workflows. Install the ones you need in your coding agent.
 
 ## Install
 

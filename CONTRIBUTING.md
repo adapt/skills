@@ -1,8 +1,13 @@
 # Contributing
 
-New skills and improvements to existing skills are welcome. Start with a
-focused, recurring task and explain what the skill adds. Improve or compose
-an existing skill when that is a better fit.
+This collection is maintained by the Adapt team. We add skills as we build
+and use them.
+
+Bug reports and feedback are welcome. We are not accepting unsolicited new
+skills from outside Adapt. To propose another change, open an issue before
+submitting a pull request.
+
+## For Adapt maintainers
 
 For each skill:
 
