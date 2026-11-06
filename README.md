@@ -7,8 +7,6 @@ a diff and test results to review before you update the original.
 
 ## Install
 
-With [Node.js LTS](https://nodejs.org/en/download) installed, run:
-
 ```sh
 npx skills add adapt/skills --skill revise-skill
 ```
