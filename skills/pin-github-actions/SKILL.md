@@ -3,7 +3,7 @@ name: pin-github-actions
 description: Pin the GitHub Actions a repository uses to full commit SHAs and add a check that keeps new ones pinned. Use when hardening CI against a compromised or retagged action, or when a workflow uses an action by tag or branch.
 license: MIT
 metadata:
-  version: "0.1.0"
+  version: "0.2.0"
   status: experimental
 ---
 
@@ -82,12 +82,20 @@ new tool unasked.
 Add a check that fails on any unpinned reference. Prefer what the repository
 already runs: an existing linter that requires hash pins (zizmor's
 `unpinned-uses` audit does by default from v1.20; check that no `ref-pin`
-override exempts `actions/*`), or an existing validation script. Otherwise copy
-[the bundled checker](scripts/check_pins.py) into the repository and run it in
-CI with `python3 path/to/check_pins.py`. It needs only the Python standard
-library and exits non-zero with `file:line` for each unpinned reference. It
-matches `uses:` lines rather than parsing YAML, so it misses flow-style
-mappings such as `{ uses: owner/repo@v1 }`; rewrite those as block steps.
+override exempts `actions/*`), or an existing validation script. Otherwise, in a
+repository with a `package.json`, copy [the bundled checker](scripts/check-action-pins.mjs)
+and [its tests](scripts/check-action-pins.test.mjs), add `yaml` as a dev
+dependency, and run `node path/to/check-action-pins.mjs` from the repository
+root in CI after dependencies install. It exits non-zero with `file:line` for
+each unpinned reference.
+
+The checker parses each workflow and `action.yml` and reads `uses` only where
+GitHub does, so flow-style steps, quoted keys and multi-line refs are caught,
+and `uses:` text inside a `run:` script is not. A YAML alias, merge key, or
+non-string `uses` inside `jobs` or `runs` fails the check instead of being
+expanded, because a parser that expands them differently from GitHub could
+miss a tag. Without Node, use zizmor; a script that matches `uses:` lines
+misses all of these cases.
 
 GitHub's allowed-actions policy can also require full-length SHAs for a
 repository or organization. Changing it needs admin access and affects other
