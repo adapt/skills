@@ -79,11 +79,19 @@ new tool unasked.
 
 ## Keep it pinned
 
-Add a check that fails on any unpinned reference. Prefer what the repository
-already runs: an existing linter that requires hash pins (zizmor's
-`unpinned-uses` audit does by default from v1.20; check that no `ref-pin`
-override exempts `actions/*`), or an existing validation script. Otherwise, in a
-repository with a `package.json`, copy [the bundled checker](scripts/check-action-pins.mjs)
+The strongest guard is GitHub's own: its Actions policy can require actions to
+be pinned to a full-length commit SHA for a repository or organization, and
+then any workflow using a tag fails. GitHub reads the workflow itself, so no
+YAML form gets past it. Recommend it first. Changing it needs admin access and
+an organization setting affects other repositories, so leave the change to an
+admin.
+
+Until it is on, or where nobody can turn it on, add a check that fails on any
+unpinned reference in pull requests. Prefer what the repository already runs:
+an existing linter that requires hash pins (zizmor's `unpinned-uses` audit does
+by default from v1.20; check that no `ref-pin` override exempts `actions/*`), or
+an existing validation script. Otherwise, in a repository with a `package.json`,
+copy [the bundled checker](scripts/check-action-pins.mjs)
 and [its tests](scripts/check-action-pins.test.mjs), add `yaml` as a dev
 dependency, and run `node path/to/check-action-pins.mjs` from the repository
 root in CI after dependencies install. It exits non-zero with `file:line` for
@@ -96,10 +104,6 @@ non-string `uses` inside `jobs` or `runs` fails the check instead of being
 expanded, because a parser that expands them differently from GitHub could
 miss a tag. Without Node, use zizmor; a script that matches `uses:` lines
 misses all of these cases.
-
-GitHub's allowed-actions policy can also require full-length SHAs for a
-repository or organization. Changing it needs admin access and affects other
-repositories, so recommend it and leave the change to an admin.
 
 ## Verify and report
 
