@@ -90,20 +90,21 @@ Until it is on, or where nobody can turn it on, add a check that fails on any
 unpinned reference in pull requests. Prefer what the repository already runs:
 an existing linter that requires hash pins (zizmor's `unpinned-uses` audit does
 by default from v1.20; check that no `ref-pin` override exempts `actions/*`), or
-an existing validation script. Otherwise, in a repository with a `package.json`,
-copy [the bundled checker](scripts/check-action-pins.mjs)
-and [its tests](scripts/check-action-pins.test.mjs), add `yaml` as a dev
-dependency, and run `node path/to/check-action-pins.mjs` from the repository
-root in CI after dependencies install. It exits non-zero with `file:line` for
-each unpinned reference.
+an existing validation script. Otherwise copy [the bundled
+checker](scripts/check-action-pins.mjs) and [its tests](scripts/check-action-pins.test.mjs)
+into the repository and run `node path/to/check-action-pins.mjs` from the
+repository root in CI. It needs the `yaml` package: add it as a dev dependency
+when the repository has a `package.json`; otherwise install it in the CI step
+with `npm install --no-save --no-package-lock --ignore-scripts` and an exact
+version, such as `yaml@2.9.1`, in the checker's directory. GitHub-hosted runners include Node. It exits
+non-zero with `file:line` for each unpinned reference.
 
 The checker parses each workflow and `action.yml` and reads `uses` only where
 GitHub does, so flow-style steps, quoted keys and multi-line refs are caught,
 and `uses:` text inside a `run:` script is not. A YAML alias, merge key, or
 non-string `uses` inside `jobs` or `runs` fails the check instead of being
 expanded, because a parser that expands them differently from GitHub could
-miss a tag. Without Node, use zizmor; a script that matches `uses:` lines
-misses all of these cases.
+miss a tag. A script that matches `uses:` lines misses all of these cases.
 
 ## Verify and report
 
