@@ -16,8 +16,6 @@ jobs:
       - uses: actions/checkout@d23441a48e516b6c34aea4fa41551a30e30af803 # v6.1.0
         with:
           persist-credentials: false
-      - name: Verify actions are pinned
-        run: python3 skills/pin-github-actions/scripts/check_pins.py
       - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6.5.0
         with:
           node-version: "26"
@@ -34,3 +32,10 @@ jobs:
             diff -r "$skill_dir" ".claude/skills/$name"
             diff -r "$skill_dir" ".agents/skills/$name"
           done
+      # After the install diff, so the checker's node_modules isn't compared.
+      - name: Verify actions are pinned
+        working-directory: skills/pin-github-actions/scripts
+        run: |
+          npm install --no-save --no-package-lock --ignore-scripts --silent yaml@2.9.1
+          node --test check-action-pins.test.mjs
+          cd "$GITHUB_WORKSPACE" && node skills/pin-github-actions/scripts/check-action-pins.mjs

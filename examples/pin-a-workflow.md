@@ -64,3 +64,11 @@ task on this repository, with and without the skill.
 All four sessions resolved the same SHAs. Here the skill didn’t change which
 commits were pinned. It kept the added check small and made each report name
 what pinning leaves open. This is one worked example.
+
+On 13 November 2026 we repeated the task with version 0.2.0, which ships the
+YAML-parsing checker, in fresh Claude Code and Codex sessions. Both resolved
+the same SHAs as before. Both added `check-action-pins.mjs` with a CI step that
+installs `yaml`, since this repository has no `package.json`, and confirmed it
+failed on the original refs and passed after pinning. Both recommended GitHub’s
+full-SHA policy. Codex recommended an updater; Claude Code added a
+`dependabot.yml` instead of only recommending one.
